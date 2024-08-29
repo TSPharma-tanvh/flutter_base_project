@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:core/core.dart';
-import 'package:demo_trung_son/data/datasource/local/app_storage.dart';
-import 'package:demo_trung_son/data/datasource/remote/api_endpoints.dart';
-import 'package:demo_trung_son/data/datasource/remote/error_handler.dart';
-import 'package:demo_trung_son/data/models/response/base/base_response.dart';
+
 import 'package:dio/dio.dart';
+import 'package:flutter_base_project/data/datasource/local/app_storage.dart';
+import 'package:flutter_base_project/data/datasource/remote/error_handler.dart';
+import 'package:flutter_base_project/data/models/response/base/base_response.dart';
 
 class BaseRepository {
   Future<Response> get(path, [data, Map<String, dynamic>? queries]) async {
@@ -28,7 +28,7 @@ class BaseRepository {
 bool noNeedToken(String path) {
   bool isNoNeedToken = false;
   const List<String> list = [
-    WebviewEndpoint.login,
+    //url that don't need token
   ];
 
   for (var item in list) {
