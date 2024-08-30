@@ -14,7 +14,6 @@ final class Routes {
 class _RouteConfig {
   static final GlobalKey<NavigatorState> navigatorKey =
       GlobalKey<NavigatorState>();
-
   static GoRouter onGenerateRoute() {
     final List<RouteBase> routes = [
       //splash
@@ -26,32 +25,32 @@ class _RouteConfig {
 
       //home
       GoRoute(
-        path: Routes.splashScreen,
+        path: Routes.homeScreen,
         parentNavigatorKey: navigatorKey,
         pageBuilder: (context, state) =>
             getPage(page: const HomeScreen(), state: state),
       )
     ];
-    return GoRouter(navigatorKey: navigatorKey, routes: routes);
+    return GoRouter(
+      navigatorKey: navigatorKey,
+      routes: routes,
+    );
   }
 
-  static Page getPage({required Widget page, required GoRouterState state}) =>
-      CupertinoPage(key: state.pageKey, child: page);
+  static Page getPage({
+    required Widget page,
+    required GoRouterState state,
+  }) =>
+      CupertinoPage(
+        key: state.pageKey,
+        child: page,
+      );
 }
 
 class AppNavigator {
   static GlobalKey<NavigatorState> get navigatorKey =>
       _RouteConfig.navigatorKey;
-
   static GoRouter get router => _RouteConfig.onGenerateRoute();
-
-  static BuildContext get currentContext {
-    if (navigatorKey.currentContext == null) {
-      throw Exception("navigatorKey is null");
-    }
-
-    return navigatorKey.currentContext!;
-  }
 
   static void go<T>(String route, [T? arguments]) =>
       currentContext.go(route, extra: arguments);
@@ -66,4 +65,12 @@ class AppNavigator {
       currentContext.pushReplacement(route, extra: arguments);
 
   static void pop([result]) => currentContext.pop(result);
+
+  static BuildContext get currentContext {
+    if (navigatorKey.currentContext == null) {
+      throw Exception('Navigator key is null');
+    }
+
+    return navigatorKey.currentContext!;
+  }
 }

@@ -44,6 +44,7 @@
   "youAreOffline": "Bạn đang ngoại tuyến",
   "chooseDate": "Chọn ngày",
   "documentNotSupported": "Tài liệu không được hỗ trợ",
-  "delete": "Xoá"
+  "delete": "Xoá",
+  "noData": "Không có dữ liệu"
 
 }
