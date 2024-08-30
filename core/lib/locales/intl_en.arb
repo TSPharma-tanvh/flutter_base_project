@@ -42,6 +42,7 @@
     "somethingWentWrong": "Something went wrong",
     "connectionLostDesc": "Connection lost. Please check your network connection.",
     "youAreOffline": "You are offline",
-    "chooseDate": "Choose the date"
+    "chooseDate": "Choose the date",
+    "documentNotSupported": "Document is not supported"
   }
   

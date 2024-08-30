@@ -42,7 +42,8 @@
     "somethingWentWrong": "문제가 발생했습니다",
     "connectionLostDesc": "연결이 끊어졌습니다. 네트워크 연결을 확인하세요.",
     "youAreOffline": "오프라인 상태입니다",
-    "chooseDate": "날짜를 선택하세요"
+    "chooseDate": "날짜를 선택하세요",
+    "documentNotSupported": "문서는 지원되지 않습니다"
 
   }
   
