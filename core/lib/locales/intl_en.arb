@@ -39,8 +39,9 @@
     "error": "Error",
     "close": "Close",
     "connectionTimeout": "Connection timeout",
-  "somethingWentWrong": "Something went wrong",
-  "connectionLostDesc": "Connection lost. Please check your network connection.",
-  "youAreOffline": "You are offline"
+    "somethingWentWrong": "Something went wrong",
+    "connectionLostDesc": "Connection lost. Please check your network connection.",
+    "youAreOffline": "You are offline",
+    "chooseDate": "Choose the date"
   }
   
