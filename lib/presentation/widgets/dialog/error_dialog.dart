@@ -3,8 +3,8 @@ import 'package:core/locales/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_base_project/app/navigator/app_navigator.dart';
-import 'package:flutter_base_project/presentation/widgets/base_widget.dart';
-import 'package:flutter_base_project/presentation/widgets/custom_dialog.dart';
+import 'package:flutter_base_project/presentation/widgets/base/base_widget.dart';
+import 'package:flutter_base_project/presentation/widgets/dialog/custom_dialog.dart';
 
 Future showErrorDialog({
   required String title,
@@ -24,13 +24,8 @@ Future showErrorDialog({
 
   await showDialog(
       context: context,
-      builder: (_) => WillPopScope(
-            onWillPop: () async {
-              // if (onTapClose != null) {
-              //   onTapClose();
-              // }
-              return shouldDismiss;
-            },
+      builder: (_) => PopScope(
+            canPop: shouldDismiss,
             child: ErrorDialog(
               errorText: title,
               errorTitle: headerTitle,

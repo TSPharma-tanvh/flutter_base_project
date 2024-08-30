@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 import 'package:core/locales/generated/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_base_project/presentation/widgets/base_widget.dart';
+import 'package:flutter_base_project/presentation/widgets/base/base_widget.dart';
 
 class CardView extends BaseWidget {
   final Widget? child; // Child widget for custom inside

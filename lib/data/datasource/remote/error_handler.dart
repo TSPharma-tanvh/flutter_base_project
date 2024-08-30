@@ -2,7 +2,7 @@ import 'package:core/core.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base_project/app/navigator/app_navigator.dart';
-import 'package:flutter_base_project/presentation/widgets/error_dialog.dart';
+import 'package:flutter_base_project/presentation/widgets/dialog/error_dialog.dart';
 
 class ErrorHandler {
   static ErrorHandler? _instance;
