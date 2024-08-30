@@ -43,6 +43,7 @@
     "connectionLostDesc": "Connection lost. Please check your network connection.",
     "youAreOffline": "You are offline",
     "chooseDate": "Choose the date",
-    "documentNotSupported": "Document is not supported"
+    "documentNotSupported": "Document is not supported",
+    "delete": "Delete"
   }
   
