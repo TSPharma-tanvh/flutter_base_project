@@ -3,13 +3,13 @@ part of '../../core.dart';
 class BrandLoading extends StatelessWidget {
   final bool logoDark;
   final double? size;
-  final String logo; // SVG asset path
+  final String? logo;
 
   const BrandLoading({
     this.size,
     super.key,
     this.logoDark = false,
-    required this.logo,
+    this.logo,
   });
 
   @override
@@ -34,7 +34,8 @@ class BrandLoading extends StatelessWidget {
             shape: CircleBorder(),
           ),
           child: SvgPicture.asset(
-            logo,
+            //not added yet
+            logo ?? "",
             fit: BoxFit.contain,
           ),
         ),

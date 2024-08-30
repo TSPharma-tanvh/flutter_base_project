@@ -1,8 +1,5 @@
 import 'package:core/core.dart';
-import 'package:core/locales/generated/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_base_project/app/cubit/app_state.dart';
-import 'package:flutter_base_project/presentation/widgets/base/base_widget.dart';
 import 'package:flutter_svg/svg.dart';
 
 class CustomButton extends StatefulWidget {
@@ -78,7 +75,6 @@ class _CustomButtonState extends State<CustomButton> {
 
   @override
   Widget build(BuildContext context) {
-    final tr = DeviceUtilsCore.languageOf(context);
     return Visibility(
       visible: widget.visible,
       child: Container(

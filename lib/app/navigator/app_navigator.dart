@@ -1,6 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_base_project/presentation/modules/home/home_screen.dart';
 import 'package:flutter_base_project/presentation/modules/splash/splash_screen.dart';
 import 'package:go_router/go_router.dart';
