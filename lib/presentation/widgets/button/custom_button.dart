@@ -93,7 +93,7 @@ class _CustomButtonState extends State<CustomButton> {
                 ? null
                 : () {
                     setOnTap(true);
-                    isOnTap ? widget.onTap : null;
+                    isOnTap ? widget.onTap() : null;
                     setOnTap(false);
                   },
             borderRadius: BorderRadius.circular(widget.borderRadius),

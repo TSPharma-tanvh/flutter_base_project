@@ -76,7 +76,7 @@ class _DioHelper {
         options.connectTimeout = const Duration(seconds: 30);
         options.receiveTimeout = const Duration(seconds: 30);
 
-        options.headers["Accept-Language"] = AppStorage().currentLanguage;
+        options.headers["Accept-Language"] = AppStorageCore().currentLanguage;
 
         if (accessToken != null && !noNeedToken(options.path)) {
           options.headers['Authorization'] = "Bearer $accessToken";

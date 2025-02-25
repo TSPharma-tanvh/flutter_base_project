@@ -52,3 +52,5 @@ part 'utils/device/responsive_utils.dart';
 part 'theme/app_colors.dart';
 part 'widgets/assets/base_image.dart';
 part 'widgets/assets/base_svg.dart';
+part 'connection/connection.dart';
+part 'storage/app_storage_core.dart';
