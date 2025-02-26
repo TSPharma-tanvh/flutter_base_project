@@ -1,16 +1,12 @@
-import 'package:first_mini_app/presentation/module/home/home_screen.dart';
-import 'package:first_mini_app/presentation/module/settings/settings_screen.dart';
-import 'package:first_mini_app/presentation/module/sign_in/sign_in_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:secondapp/presentation/module/second/second_screen.dart';
 
 final class Routes {
   Routes._();
 
   static const String initialRoute = "/";
-  static const String homeScreen = "/firsthome";
-  static const String settingScreen = "/firstsetting";
 
   static String of(String route) => route;
 }
@@ -21,20 +17,7 @@ class RouteConfig {
       path: Routes.initialRoute,
       parentNavigatorKey: AppNavigator.rootNavigatorKey,
       pageBuilder: (context, state) => getPage(
-          page: SignInScreen(value: state.extra as String ?? ''), state: state),
-    ),
-    GoRoute(
-      path: Routes.homeScreen,
-      parentNavigatorKey: AppNavigator.rootNavigatorKey,
-      pageBuilder: (context, state) =>
-          getPage(page: const HomeScreen(), state: state),
-    ),
-    GoRoute(
-      path: Routes.settingScreen,
-      parentNavigatorKey: AppNavigator.rootNavigatorKey,
-      pageBuilder: (context, state) => getPage(
-          page: SettingScreen(value: state.extra as String ?? ''),
-          state: state),
+          page: SecondScreen(value: state.extra as String ?? ''), state: state),
     ),
   ];
 

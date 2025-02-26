@@ -1,6 +1,7 @@
 import 'package:core/locales/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base_project/app/cubit/app_cubit.dart';
+import 'package:flutter_base_project/app/dependency_injection/app_di.dart';
 import 'package:flutter_base_project/app/navigator/app_navigator.dart';
 import 'package:flutter_base_project/mini_app_manager.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await AppDependencyInjection.init();
 
   runApp(
     MultiBlocProvider(
@@ -20,12 +22,28 @@ void main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      AppCubit appCubit = context.read<AppCubit>();
+      appCubit.init(context);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     MiniAppManager.inject(context.watch<AppCubit>());
+    // MiniAppManager.initMiniApps(context);
 
     return MaterialApp.router(
       title: 'Flutter Demo',

@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_base_project/presentation/modules/home/home_screen.dart';
 import 'package:flutter_base_project/presentation/modules/splash/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 
 final class Routes {
   Routes._();
-  //require to put the / page first to make it default routing
   static const String splashScreen = "/";
   static const String homeScreen = "/home";
   static const String exampleScreen = "/example";
@@ -14,28 +14,26 @@ final class Routes {
 class _RouteConfig {
   static final GlobalKey<NavigatorState> navigatorKey =
       GlobalKey<NavigatorState>();
-  static GoRouter onGenerateRoute() {
-    final List<RouteBase> routes = [
-      //splash
-      GoRoute(
-          path: Routes.splashScreen,
-          parentNavigatorKey: navigatorKey,
-          pageBuilder: (context, state) =>
-              getPage(page: const SplashScreen(), state: state)),
 
-      //home
-      GoRoute(
-        path: Routes.homeScreen,
-        parentNavigatorKey: navigatorKey,
-        pageBuilder: (context, state) =>
-            getPage(page: const HomeScreen(), state: state),
-      )
-    ];
-    return GoRouter(
-      navigatorKey: navigatorKey,
-      routes: routes,
-    );
-  }
+  static final List<RouteBase> _routes = [
+    GoRoute(
+      path: Routes.splashScreen,
+      parentNavigatorKey: navigatorKey,
+      pageBuilder: (context, state) =>
+          getPage(page: const SplashScreen(), state: state),
+    ),
+    GoRoute(
+      path: Routes.homeScreen,
+      parentNavigatorKey: navigatorKey,
+      pageBuilder: (context, state) =>
+          getPage(page: const HomeScreen(), state: state),
+    ),
+  ];
+
+  static GoRouter onGenerateRoute() => GoRouter(
+        navigatorKey: navigatorKey,
+        routes: _routes,
+      );
 
   static Page getPage({
     required Widget page,
@@ -45,12 +43,21 @@ class _RouteConfig {
         key: state.pageKey,
         child: page,
       );
+
+  static void addMiniAppRoutes(List<RouteBase> miniAppRoutes) {
+    _routes.addAll(miniAppRoutes);
+  }
 }
 
 class AppNavigator {
   static GlobalKey<NavigatorState> get navigatorKey =>
       _RouteConfig.navigatorKey;
   static GoRouter get router => _RouteConfig.onGenerateRoute();
+
+  static void addRoutes(List<RouteBase> routes) {
+    debugPrint("Adding routes: $routes");
+    _RouteConfig.addMiniAppRoutes(routes);
+  }
 
   static void go<T>(String route, [T? arguments]) =>
       currentContext.go(route, extra: arguments);
@@ -70,7 +77,6 @@ class AppNavigator {
     if (navigatorKey.currentContext == null) {
       throw Exception('Navigator key is null');
     }
-
     return navigatorKey.currentContext!;
   }
 }

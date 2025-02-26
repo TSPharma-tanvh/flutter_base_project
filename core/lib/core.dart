@@ -54,3 +54,5 @@ part 'widgets/assets/base_image.dart';
 part 'widgets/assets/base_svg.dart';
 part 'connection/connection.dart';
 part 'storage/app_storage_core.dart';
+part 'widgets/button/custom_button_core.dart';
+part 'connection/event_model.dart';

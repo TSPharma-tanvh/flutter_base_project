@@ -1,3 +1,3 @@
-class DependencyInjection {
+class FirstMiniAppDependencyInjection {
   static Future<void> init() async {}
 }

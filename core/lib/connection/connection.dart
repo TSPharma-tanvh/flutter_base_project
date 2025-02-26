@@ -1,15 +1,21 @@
 part of '../core.dart';
 
-abstract class StandardConnection {
-  final SuperAppConn superAppConn;
+abstract class StandardConnectionCore {
+  final SuperAppConnectionCore superAppConn;
 
-  StandardConnection({required this.superAppConn});
-  init(GlobalKey<NavigatorState> navigatorKey, String accessToken);
+  StandardConnectionCore({required this.superAppConn});
+
+  init(String accessToken);
+
   createView();
+
+  onEventMiniApp(MiniAppEventCoreModel params);
+
+  getRoutes({required GlobalKey<NavigatorState> navigatorKey});
 }
 
-mixin SuperAppConn {
-  onEvent(MiniAppEvent event, [data]);
+mixin SuperAppConnectionCore {
+  onEvent(MiniAppEventCore event, [data]);
 }
 
-enum MiniAppEvent { logout }
+enum MiniAppEventCore { logout, refreshToken, pushToFirstMiniSetting }

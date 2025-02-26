@@ -1,9 +1,7 @@
-import 'package:core/core.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+part of '../../core.dart';
 
-class CustomButton extends StatefulWidget {
-  const CustomButton({
+class CustomButtonCore extends StatefulWidget {
+  const CustomButtonCore({
     super.key,
     required this.onTap,
     this.height = 50,
@@ -13,7 +11,7 @@ class CustomButton extends StatefulWidget {
     this.textColor = Colors.white,
     this.textSize = 16,
     this.padding = const EdgeInsets.symmetric(vertical: 12),
-    this.margin = const EdgeInsets.all(10),
+    this.margin = EdgeInsets.zero,
     required this.content,
     this.borderRadius = 8,
     this.borderColor = Colors.transparent,
@@ -61,10 +59,10 @@ class CustomButton extends StatefulWidget {
   final Color? disabledBorderColor;
 
   @override
-  State<CustomButton> createState() => _CustomButtonState();
+  State<CustomButtonCore> createState() => _CustomButtonCoreState();
 }
 
-class _CustomButtonState extends State<CustomButton> {
+class _CustomButtonCoreState extends State<CustomButtonCore> {
   late bool isOnTap = false;
 
   void setOnTap(bool value) {
@@ -82,6 +80,7 @@ class _CustomButtonState extends State<CustomButton> {
           maxWidth: widget.width,
           minHeight: widget.height,
         ),
+        margin: widget.margin,
         child: Material(
           borderRadius: BorderRadius.circular(widget.borderRadius),
           color: widget.isDisable == false

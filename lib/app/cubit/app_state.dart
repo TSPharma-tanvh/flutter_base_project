@@ -5,6 +5,7 @@ class AppState extends CoreState {
   final Locale? locale;
   final int? countUnread;
   final bool showOnboarding;
+  final String secondAppValue;
 
   const AppState({
     required super.themeMode,
@@ -12,6 +13,7 @@ class AppState extends CoreState {
     this.locale,
     this.countUnread,
     this.showOnboarding = false,
+    this.secondAppValue = "",
   });
 
   @override
@@ -21,6 +23,7 @@ class AppState extends CoreState {
         locale,
         countUnread,
         showOnboarding,
+        secondAppValue,
       ];
 
   AppState copyWith({
@@ -29,6 +32,7 @@ class AppState extends CoreState {
     Locale? locale,
     int? countUnread,
     bool? showOnboarding,
+    String? secondAppValue,
   }) {
     return AppState(
       themeMode: themeMode ?? this.themeMode,
@@ -36,6 +40,7 @@ class AppState extends CoreState {
       locale: locale ?? this.locale,
       countUnread: countUnread ?? this.countUnread,
       showOnboarding: showOnboarding ?? this.showOnboarding,
+      secondAppValue: secondAppValue ?? this.secondAppValue,
     );
   }
 }
