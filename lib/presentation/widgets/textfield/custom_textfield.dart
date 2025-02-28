@@ -160,16 +160,21 @@ class CustomTextField extends FormField<String> {
                         const TextStyle(fontSize: 16)
                             .copyWith(color: theme.colors.disableColor),
                 prefixIcon: !StringUtilsCore.isNullOrEmpty(prefixIcon)
-                    ? InkWell(
-                        onTap: () {
-                          state.focusNode.unfocus();
-                          onTapPrefix!();
-                        },
-                        child: prefixIcon!,
+                    ? Padding(
+                        padding: const EdgeInsets.only(left: 16, right: 8),
+                        child: InkWell(
+                          onTap: () {
+                            state.focusNode.unfocus();
+                            onTapPrefix?.call();
+                          },
+                          child: prefixIcon!,
+                        ),
                       )
                     : null,
-                prefixIconConstraints:
-                    const BoxConstraints(maxHeight: 36, minHeight: 28),
+                prefixIconConstraints: const BoxConstraints(
+                  minWidth: 36,
+                  minHeight: 28,
+                ),
                 prefix: prefixWidget,
                 alignLabelWithHint: alignLabelWithHint,
                 counterText: "",
