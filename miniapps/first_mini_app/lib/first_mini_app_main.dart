@@ -21,9 +21,6 @@ class FirstMiniApp extends StandardConnectionCore {
       getIt.unregister<FirstMiniAppSession>();
     }
     getIt.registerSingleton<FirstMiniAppSession>(session);
-
-    // Ensure navigatorKey is correctly assigned
-    // RouteConfig.miniAppNavigatorKey = navigatorKey;
   }
 
   @override
@@ -35,7 +32,6 @@ class FirstMiniApp extends StandardConnectionCore {
       getIt.registerSingleton<FirstMiniAppSession>(session);
     }
 
-    // Return the mini-app router
     return SignInScreen(value: value ?? '');
   }
 

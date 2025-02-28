@@ -6,21 +6,6 @@ import 'package:flutter_base_project/app/navigator/app_navigator.dart';
 import 'package:secondapp/second_miniapp_main.dart';
 
 class MiniAppManager {
-  // static inject(AppCubit cubit) {
-  //   if (!getIt.isRegistered<FirstMiniApp>()) {
-  //     getIt.registerLazySingleton(() => FirstMiniApp(
-  //           superAppConn: cubit,
-  //           theme: cubit.state.theme,
-  //         ));
-  //   }
-
-  //   if (!getIt.isRegistered<SecondMiniApp>()) {
-  //     getIt.registerLazySingleton(() => SecondMiniApp(
-  //           superAppConn: cubit,
-  //           theme: cubit.state.theme,
-  //         ));
-  //   }
-  // }
 
   static void _registerMiniApp<T extends Object>(T Function() create) {
     if (!getIt.isRegistered<T>()) {
