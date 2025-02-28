@@ -15,6 +15,25 @@ class _RouteConfig {
   static final GlobalKey<NavigatorState> navigatorKey =
       GlobalKey<NavigatorState>();
 
+  //with analytics
+  // static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+  // static FirebaseAnalyticsObserver observer =
+  //     FirebaseAnalyticsObserver(analytics: analytics);
+
+  static final GoRouter goRouter = GoRouter(
+    navigatorKey: navigatorKey,
+    // observers: [observer],
+    errorPageBuilder: (context, state) {
+      final url = state.uri.toString();
+      debugPrint("Navigator Error: $url");
+      return CupertinoPage(
+        key: state.pageKey,
+        child: const SplashScreen(),
+      );
+    },
+    routes: _routes,
+  );
+
   static final List<RouteBase> _routes = [
     GoRoute(
       path: Routes.splashScreen,
@@ -29,11 +48,6 @@ class _RouteConfig {
           getPage(page: const HomeScreen(), state: state),
     ),
   ];
-
-  static GoRouter onGenerateRoute() => GoRouter(
-        navigatorKey: navigatorKey,
-        routes: _routes,
-      );
 
   static Page getPage({
     required Widget page,
@@ -52,7 +66,7 @@ class _RouteConfig {
 class AppNavigator {
   static GlobalKey<NavigatorState> get navigatorKey =>
       _RouteConfig.navigatorKey;
-  static GoRouter get router => _RouteConfig.onGenerateRoute();
+  static GoRouter get router => _RouteConfig.goRouter;
 
   static void addRoutes(List<RouteBase> routes) {
     debugPrint("Adding routes: $routes");
