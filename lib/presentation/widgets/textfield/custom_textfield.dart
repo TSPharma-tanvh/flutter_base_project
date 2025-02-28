@@ -28,7 +28,6 @@ class CustomTextField extends FormField<String> {
       immobileLabelText; // set label text but it is immobile => label text don't use
   final TextStyle? labelStyle; //style of label text
   final bool? isVisible;
-  final AppThemeCore theme;
   final bool visibleMaxLengthText;
   final bool hideText;
   final bool isRequired;
@@ -39,7 +38,6 @@ class CustomTextField extends FormField<String> {
   CustomTextField({
     GlobalKey? super.key,
     required this.controller,
-    required this.theme,
     EdgeInsetsGeometry? padding,
     String? initialValue,
     InputDecoration? decoration,
@@ -122,6 +120,7 @@ class CustomTextField extends FormField<String> {
           builder: (FormFieldState<String> field) {
             final TextsFieldState state = field as TextsFieldState;
             final InputDecoration effectiveDecoration;
+            final theme = AppThemeCore.of(ThemeMode.light);
             if (decoration != null) {
               effectiveDecoration = decoration;
             } else {
@@ -356,13 +355,14 @@ class TextsFieldState extends FormFieldState<String> {
 
   @override
   Widget build(BuildContext context) {
-    final Color borderColor = widget.borderColor ?? widget.theme.colors.black;
+    final theme = AppThemeCore.of(ThemeMode.light);
+    final Color borderColor = widget.borderColor ?? theme.colors.black;
     final Color focusBorderColor =
-        widget.borderColor ?? widget.theme.colors.mainDarkGreen;
+        widget.borderColor ?? theme.colors.mainDarkGreen;
     _checkLabelError = checkLabelError();
     final titleStyle = widget.labelStyle ??
         const TextStyle(fontSize: 16).copyWith(
-            color: widget.theme.colors.mainGrey, fontWeight: FontWeight.w400);
+            color: theme.colors.mainGrey, fontWeight: FontWeight.w400);
     return Visibility(
       visible: widget.isVisible ?? true,
       child: Container(
@@ -408,7 +408,7 @@ class TextsFieldState extends FormFieldState<String> {
                                   color: _focusNode.hasFocus
                                       ? focusBorderColor
                                       : checkError()
-                                          ? widget.theme.colors.itemRed
+                                          ? theme.colors.itemRed
                                           : borderColor)
                               : Border(
                                   bottom: BorderSide(
@@ -453,8 +453,8 @@ class TextsFieldState extends FormFieldState<String> {
                                                 ? TextSpan(
                                                     text: ' *',
                                                     style: titleStyle.copyWith(
-                                                      color: widget
-                                                          .theme.colors.itemRed,
+                                                      color:
+                                                          theme.colors.itemRed,
                                                     ))
                                                 : const TextSpan(),
                                           ],
@@ -493,7 +493,7 @@ class TextsFieldState extends FormFieldState<String> {
                     child: Text(
                       errorText!,
                       style: AppTextStyleCore.s14
-                          .copyWith(color: widget.theme.colors.itemRed),
+                          .copyWith(color: theme.colors.itemRed),
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -548,6 +548,7 @@ class TextsFieldState extends FormFieldState<String> {
 
   /// Render Close Icon
   Widget renderCloseIcon() {
+    final theme = AppThemeCore.of(ThemeMode.light);
     if (widget.openCloseIcon &&
         !StringUtilsCore.isNullOrEmpty(_effectiveController.text)) {
       return Container(
@@ -569,7 +570,7 @@ class TextsFieldState extends FormFieldState<String> {
           child: Container(
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: widget.theme.colors.white,
+                color: theme.colors.white,
                 borderRadius: BorderRadius.circular(100),
               ),
               padding: const EdgeInsets.all(2),
@@ -586,6 +587,8 @@ class TextsFieldState extends FormFieldState<String> {
 
   /// Render counter text
   Widget renderCounterText() {
+    final theme = AppThemeCore.of(ThemeMode.light);
+
     if (!StringUtilsCore.isNullOrEmpty(widget.controller) &&
         !StringUtilsCore.isNullOrEmpty(widget.maxLength) &&
         widget.visibleMaxLengthText) {
@@ -594,8 +597,7 @@ class TextsFieldState extends FormFieldState<String> {
         alignment: Alignment.centerRight,
         child: Text(
           '${widget.controller!.text.length}/${widget.maxLength}',
-          style: AppTextStyleCore.s12
-              .copyWith(color: widget.theme.colors.mainGrey),
+          style: AppTextStyleCore.s12.copyWith(color: theme.colors.mainGrey),
         ),
       );
     } else {
