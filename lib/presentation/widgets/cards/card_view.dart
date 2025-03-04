@@ -1,9 +1,7 @@
 import 'package:core/core.dart';
-import 'package:core/locales/generated/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_base_project/presentation/widgets/base/base_widget.dart';
 
-class CardView extends BaseWidget {
+class CardView extends StatelessWidget {
   final Widget? child; // Child widget for custom inside
   final double? radius; // border radius of button
   final Color? color; // Background color
@@ -45,8 +43,8 @@ class CardView extends BaseWidget {
     this.width,
   });
   @override
-  Widget build(BuildContext context, AppThemeCore theme, AppLocalizations tr) {
-    final colors = theme.colors;
+  Widget build(BuildContext context) {
+    final colors = AppThemeCore.of(ThemeMode.light).colors;
     final colorBG = color ?? colors.mainGreen;
     return Container(
       margin: margin,

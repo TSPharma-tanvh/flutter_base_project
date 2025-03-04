@@ -5,7 +5,7 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base_project/domain/entities/base/image_model.dart';
 import 'package:flutter_base_project/presentation/widgets/cards/card_view.dart';
-import 'package:flutter_base_project/presentation/widgets/image/cache_network_image.dart';
+import 'package:flutter_base_project/presentation/widgets/image/custom_network_image.dart';
 
 import 'pdf_viewer.dart';
 
@@ -198,7 +198,7 @@ class PreviewImageListState extends State<PreviewImageList> {
       final f = FileUtilsCore(item.networkData!.originalName ?? '');
 
       if (f.isImage) {
-        return ImgNetWork(
+        return CustomNetworkImage(
           url: item.networkData!.viewUrl,
           width: size.width,
           fit: BoxFit.contain,

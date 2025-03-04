@@ -1,11 +1,9 @@
 import 'package:core/core.dart';
-import 'package:core/locales/generated/l10n.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_base_project/presentation/widgets/base/base_widget.dart';
 import 'package:flutter_base_project/presentation/widgets/cards/card_view.dart';
 
-class CustomDialog extends BaseWidget {
+class CustomDialog extends StatelessWidget {
   const CustomDialog({
     super.key,
     required this.onPressBtnAccept,
@@ -38,9 +36,8 @@ class CustomDialog extends BaseWidget {
   final Widget errorImage;
 
   @override
-  Widget build(BuildContext context, AppThemeCore theme, AppLocalizations tr) {
-    final colors = theme.colors;
-
+  Widget build(BuildContext context) {
+    final colors = AppThemeCore.of(ThemeMode.light).colors;
     return Dialog(
       backgroundColor: Colors.transparent,
       insetPadding: const EdgeInsets.all(10),

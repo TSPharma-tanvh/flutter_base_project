@@ -1,12 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-const String _noImageLink =
-    'https://st4.depositphotos.com/14953852/24787/v/380/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg';
-
-class ImgNetWork extends StatelessWidget {
-  const ImgNetWork({
+class CustomNetworkImage extends StatelessWidget {
+  const CustomNetworkImage({
     super.key,
     this.url,
     this.onPress,
@@ -23,6 +19,8 @@ class ImgNetWork extends StatelessWidget {
     this.border,
     this.shadow,
     this.blankImage,
+    this.noImageLink =
+        'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg',
   });
 
   final String? url;
@@ -40,10 +38,11 @@ class ImgNetWork extends StatelessWidget {
   final BoxBorder? border;
   final List<BoxShadow>? shadow;
   final Image? blankImage;
+  final String? noImageLink;
 
   @override
   Widget build(BuildContext context) {
-    if (StringUtilsCore.isNullOrEmpty(url)) {
+    if (url == null || url!.isEmpty) {
       return Container(
         width: width,
         height: height,
@@ -51,13 +50,17 @@ class ImgNetWork extends StatelessWidget {
           borderRadius: borderRadius,
           boxShadow: shadow,
           border: border,
-          color: Colors.grey,
         ),
         clipBehavior: Clip.antiAlias,
         child: blankImage ??
             Image.network(
-              _noImageLink,
+              noImageLink ?? '',
+              width: width,
+              height: height,
               fit: BoxFit.cover,
+              errorBuilder: (context, exception, stackTrace) {
+                return const Text('Error loading fallback image');
+              },
             ),
       );
     }
@@ -87,6 +90,7 @@ class ImgNetWork extends StatelessWidget {
         color: color,
         useOldImageOnUrlChange: useOldImageOnUrlChange ?? false,
         errorWidget: (context, url, error) {
+          debugPrint("Error when rendering cache image: $error");
           return blankImage != null
               ? ClipRRect(
                   borderRadius: borderRadius ?? BorderRadius.zero,
@@ -94,6 +98,7 @@ class ImgNetWork extends StatelessWidget {
                     image: blankImage!.image,
                     width: width,
                     height: height,
+                    fit: fit ?? BoxFit.cover,
                   ),
                 )
               : Container(
@@ -103,11 +108,16 @@ class ImgNetWork extends StatelessWidget {
                     borderRadius: borderRadius,
                     boxShadow: shadow,
                     border: border,
-                    color: Colors.grey,
                   ),
+                  clipBehavior: Clip.antiAlias,
                   child: Image.network(
-                    _noImageLink,
+                    noImageLink ?? '',
                     fit: BoxFit.cover,
+                    width: width,
+                    height: height,
+                    errorBuilder: (context, exception, stackTrace) {
+                      return const Text('Error loading fallback');
+                    },
                   ),
                 );
         },
@@ -115,19 +125,14 @@ class ImgNetWork extends StatelessWidget {
     );
   }
 
-  Container _renderLoading() {
+  Widget _renderLoading() {
     return Container(
       width: width,
-      height: height,
+      height: height ?? 0,
       decoration: BoxDecoration(
         borderRadius: borderRadius,
-        boxShadow: shadow,
-        border: border,
-        color: Colors.grey,
       ),
-      child: BrandLoading(
-        size: width * 0.35,
-      ),
+      child: const CircularProgressIndicator(),
     );
   }
 }

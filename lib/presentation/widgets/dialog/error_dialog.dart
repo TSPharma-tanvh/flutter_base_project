@@ -3,7 +3,6 @@ import 'package:core/locales/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_base_project/app/navigator/app_navigator.dart';
-import 'package:flutter_base_project/presentation/widgets/base/base_widget.dart';
 import 'package:flutter_base_project/presentation/widgets/dialog/custom_dialog.dart';
 
 Future showErrorDialog({
@@ -38,7 +37,7 @@ Future showErrorDialog({
           ));
 }
 
-class ErrorDialog extends BaseWidget {
+class ErrorDialog extends StatelessWidget {
   final String errorText;
   final bool showIconClose;
   final Function()? onTap;
@@ -61,10 +60,10 @@ class ErrorDialog extends BaseWidget {
   });
 
   @override
-  Widget build(BuildContext context, AppThemeCore theme, AppLocalizations t) {
-    final colors = theme.colors;
+  Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context);
     return CustomDialog(
-      colorTitle: colors.itemRed,
+      colorTitle: AppColorCore.itemRed,
       title: errorTitle ?? t.error,
       content: errorText,
       textBtnAccept: textBtnAccept ?? t.close,

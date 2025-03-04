@@ -1,11 +1,9 @@
 import 'package:core/core.dart';
-import 'package:core/locales/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base_project/app/assets/app_svg.dart';
-import 'package:flutter_base_project/presentation/widgets/base/base_widget.dart';
 import 'package:flutter_base_project/presentation/widgets/cards/card_view.dart';
 
-class BottomSheetWidget extends BaseWidget {
+class BottomSheetWidget extends StatelessWidget {
   final String? title; // Title text
   final String? subTitle; // Title text
   final TextStyle? titleStyle; // Title style
@@ -44,8 +42,8 @@ class BottomSheetWidget extends BaseWidget {
   });
 
   @override
-  Widget build(BuildContext context, AppThemeCore theme, AppLocalizations tr) {
-    final appColors = theme.colors;
+  Widget build(BuildContext context) {
+    final appColors = AppThemeCore.of(ThemeMode.light).colors;
     final colorHead = colorHeader ?? appColors.mainDarkGreen;
     return Container(
       height: height,
