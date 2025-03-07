@@ -137,7 +137,7 @@ class PreviewImageListState extends State<PreviewImageList> {
                   color: Colors.transparent,
                   title: '${currentIndex + 1}/${widget.images.length}',
                   titleStyle:
-                      widget.titleStyle ?? AppTextStyleCore.s16w400cWhite,
+                      widget.titleStyle ?? AppTextStyleCore.s16w400White,
                 ),
               ),
               const CardView(
@@ -178,7 +178,7 @@ class PreviewImageListState extends State<PreviewImageList> {
                   ),
                   Text(
                     lang?.delete ?? "",
-                    style: widget.titleStyle ?? AppTextStyleCore.s16w400cWhite,
+                    style: widget.titleStyle ?? AppTextStyleCore.s16w400White,
                   ),
                 ],
               ),

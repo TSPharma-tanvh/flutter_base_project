@@ -92,7 +92,7 @@ class BottomSheetWidget extends StatelessWidget {
                             Text(
                               title ?? '',
                               style: titleStyle ??
-                                  AppTextStyleCore.s16w400cWhite
+                                  AppTextStyleCore.s16w400White
                                       .copyWith(fontWeight: FontWeight.w500),
                               textAlign: TextAlign.center,
                               maxLines: maxLinesTitle,
@@ -105,7 +105,7 @@ class BottomSheetWidget extends StatelessWidget {
                                 ? Container()
                                 : Text(
                                     subTitle!,
-                                    style: AppTextStyleCore.s16w400cWhite
+                                    style: AppTextStyleCore.s16w400White
                                         .copyWith(color: appColors.mainGrey),
                                     textAlign: TextAlign.center,
                                   ),

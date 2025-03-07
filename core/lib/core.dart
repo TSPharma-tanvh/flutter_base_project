@@ -56,3 +56,4 @@ part 'connection/connection.dart';
 part 'storage/app_storage_core.dart';
 part 'widgets/button/custom_button_core.dart';
 part 'connection/event_model.dart';
+part 'theme/app_constants.dart';

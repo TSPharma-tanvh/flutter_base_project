@@ -63,7 +63,7 @@ class CardView extends StatelessWidget {
           child: (setMinWidth)
               ? child ??
                   Text(title.toString(),
-                      style: titleStyle ?? AppTextStyleCore.s16w400cWhite)
+                      style: titleStyle ?? AppTextStyleCore.s16w400White)
               : Container(
                   //color: Colors.white,
                   padding: padding,
@@ -72,7 +72,7 @@ class CardView extends StatelessWidget {
                   child: child ??
                       Text(
                         title.toString(),
-                        style: titleStyle ?? AppTextStyleCore.s16w400cWhite,
+                        style: titleStyle ?? AppTextStyleCore.s16w400White,
                       ),
                 ),
         ),
